@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 # The total number of votes cast
@@ -27,7 +27,7 @@
 # In addition, your final script should both print the analysis to the terminal and export a text file with the results.
 
 
-# In[2]:
+# In[14]:
 
 
 #import csv
@@ -50,11 +50,13 @@ with open(path,'r', newline="") as pollcsv:
     election_data = csv.reader(pollcsv, delimiter=",")
     header = next(election_data)
     first_row = next(election_data)
+    #sets starting point for all vote tallies
     total_votes += 1
     khan_tally += 1
     correy_tally += 1
     li_tally += 1
     otooley_tally += 1
+    #for each line in the csv tally the vote to the total vote, note who the vote was cast for and add that vote to the appropriate tally
     for row in election_data:
         total_votes +=1
         if row[2] == "Khan":
@@ -67,37 +69,58 @@ with open(path,'r', newline="") as pollcsv:
             otooley_tally +=1
 
 
-# In[3]:
+# In[15]:
 
 
+#calculate percentage of vote and assign to variables
 khan_percent = round(((khan_tally/total_votes)*100),3)
 correy_percent = round(((correy_tally/total_votes)*100),3)
 li_percent = round(((li_tally/total_votes)*100),3)
 otooley_percent = round(((otooley_tally/total_votes)*100),3)
 
 
-# In[4]:
+# In[16]:
 
 
+#create dictionary of winners and their number of votes, then use max to find the key with the largest value
 total_list = {'Khan': khan_tally,'Correy': correy_tally,'Li': li_tally,'OTooley': otooley_tally}
 winner = max(total_list, key=lambda key: total_list[key])
 
 
-# In[6]:
+# In[17]:
 
 
 #print results and export to txt
-print(f'Election Results', file=open("results.txt","a"))
-print(f'-------------------------', file=open("results.txt","a"))
-print(f'Total Votes: {total_votes}', file=open("results.txt","a"))
-print(f'-------------------------', file=open("results.txt","a"))
-print(f'Khan: {khan_percent}% ({khan_tally})', file=open("results.txt","a"))
-print(f'Correy: {correy_percent}% ({correy_tally})', file=open("results.txt","a"))
-print(f'Li: {li_percent}% ({li_tally})', file=open("results.txt","a"))
-print(f'O\'Tooley: {otooley_percent}% ({otooley_tally})', file=open("results.txt","a"))
-print(f'-------------------------', file=open("results.txt","a"))
-print(f'Winner: {winner}', file=open("results.txt","a"))
-print(f'-------------------------', file=open("results.txt","a"))
+with open("results.txt", "a") as write_file:
+    print(f'Election Results', file=write_file)
+    print(f'-------------------------', file=write_file)
+    print(f'Total Votes: {total_votes}', file=write_file)
+    print(f'-------------------------', file=write_file)
+    print(f'Khan: {khan_percent}% ({khan_tally})', file=write_file)
+    print(f'Correy: {correy_percent}% ({correy_tally})', file=write_file)
+    print(f'Li: {li_percent}% ({li_tally})', file=write_file)
+    print(f'O\'Tooley: {otooley_percent}% ({otooley_tally})', file=write_file)
+    print(f'-------------------------', file=write_file)
+    print(f'Winner: {winner}', file=write_file)
+    print(f'-------------------------', file=write_file)
+
+print(f'Election Results')
+print(f'-------------------------')
+print(f'Total Votes: {total_votes}')
+print(f'-------------------------')
+print(f'Khan: {khan_percent}% ({khan_tally})')
+print(f'Correy: {correy_percent}% ({correy_tally})')
+print(f'Li: {li_percent}% ({li_tally})')
+print(f'O\'Tooley: {otooley_percent}% ({otooley_tally})')
+print(f'-------------------------')
+print(f'Winner: {winner}')
+print(f'-------------------------')
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:

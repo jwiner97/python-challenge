@@ -77,6 +77,15 @@ average = round(((total_change)/(counter - 1)),2)
 
 
 #print results
+with open("results.txt", "a") as write_file:
+    print(f'Financial Analysis', file=write_file)
+    print(f'----------------------------', file=write_file)
+    print(f'Total Months: {counter}', file=write_file)
+    print(f'Total: ${total}', file=write_file)
+    print(f'Average Change: ${average}', file=write_file)
+    print(f'Greatest Increase in Profits: {highest_month} (${current_increase})', file=write_file)
+    print(f'Greatest Decrease in Profits: {lowest_month} (${current_decrease})', file=write_file)
+
 print(f'Financial Analysis')
 print(f'----------------------------')
 print(f'Total Months: {counter}')
